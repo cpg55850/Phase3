@@ -11,7 +11,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private CapsuleCollider col;
     public LayerMask ground;
     private bool doubleJump = false;
-    public Animator anim;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
