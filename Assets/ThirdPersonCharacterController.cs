@@ -11,23 +11,33 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private CapsuleCollider col;
     public LayerMask ground;
     private bool doubleJump = false;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerMovement();
+
+        float inputH = Input.GetAxis("Horizontal");
+        float inputV = Input.GetAxis("Vertical");
+
+        anim.SetFloat("inputH", inputH);
+        anim.SetFloat("inputV", inputV);
+
     }
 
     void PlayerMovement() {
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
+
         Vector3 playerMovement = new Vector3(hor, 0f, ver) * speed * Time.deltaTime;
         transform.Translate(playerMovement, Space.Self);
 
