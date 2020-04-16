@@ -13,7 +13,6 @@ public class NPC2 : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player") {
-            Debug.Log("Entered range!");
             dialogueSystem.EnterRangeOfNPC();
 		}
 	}
@@ -28,9 +27,8 @@ public class NPC2 : MonoBehaviour
 
     public void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Player") {
-            Debug.Log("Exited range!");
+            dialogueSystem.OutOfRangeOfNPC();  
 		}
-        dialogueSystem.OutOfRangeOfNPC();  
 	}
 
 }

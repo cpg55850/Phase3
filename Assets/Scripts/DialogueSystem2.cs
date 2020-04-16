@@ -46,7 +46,7 @@ public class DialogueSystem2 : MonoBehaviour
             promptGUI.SetActive(false);
             dialogueActive = true;
 
-            Debug.Log("Starting convo with " + dialogue.name);
+            nameText.text = dialogue.name;
 
             sentences.Clear();
 
@@ -66,12 +66,10 @@ public class DialogueSystem2 : MonoBehaviour
 		}
 
         string sentence = sentences.Dequeue();
-        Debug.Log(sentence);
         dialogueText.text = sentence;
 	}
 
     public void EndDialogue() {
-        Debug.Log("End of conversation.");
         promptGUI.SetActive(true);
         dialogueGUI.SetActive(false);
         dialogueActive = false;
