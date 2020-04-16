@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
-{
+[System.Serializable]
+public class NPC : MonoBehaviour {
+
     public Transform ChatBackGround;
     public Transform NPCCharacter;
 
@@ -19,14 +20,22 @@ public class NPC : MonoBehaviour
         dialogueSystem = FindObjectOfType<DialogueSystem>();
     }
 	
+	void Update () {
+          Vector3 Pos = Camera.main.WorldToScreenPoint(NPCCharacter.position);
+          Pos.y += 175;
+          ChatBackGround.position = Pos;
+    }
+
     public void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
+        if ((other.gameObject.tag == "Player"))
+        {
+            this.gameObject.GetComponent<NPC>().enabled = true;
             FindObjectOfType<DialogueSystem>().EnterRangeOfNPC();
-		}
-        
+        }
         if ((other.gameObject.tag == "Player") && Input.GetKeyDown(KeyCode.F))
         {
+            this.gameObject.GetComponent<NPC>().enabled = true;
             dialogueSystem.Names = Name;
             dialogueSystem.dialogueLines = sentences;
             FindObjectOfType<DialogueSystem>().NPCName();
@@ -36,6 +45,7 @@ public class NPC : MonoBehaviour
     public void OnTriggerExit()
     {
         FindObjectOfType<DialogueSystem>().OutOfRange();
+        this.gameObject.GetComponent<NPC>().enabled = false;
     }
 }
 
