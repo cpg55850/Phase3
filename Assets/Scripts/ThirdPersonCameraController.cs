@@ -22,18 +22,23 @@ public class ThirdPersonCameraController : MonoBehaviour
     }
 
     private void LateUpdate() {
-        mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
-        mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
-        mouseY = Mathf.Clamp(mouseY, -35, 60);
-        transform.LookAt(target);
+        if(player){
+            target.transform.position = player.transform.position + new Vector3(0, 2.5f, 0);
+            mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+            mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
+            mouseY = Mathf.Clamp(mouseY, -35, 60);
+            transform.LookAt(target);
 
-        if (Input.GetKey(KeyCode.LeftAlt))
-        {
-            target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-        } else
-        {
-            target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-            player.rotation = Quaternion.Euler(0, mouseX, 0);
-        }
+            if (Input.GetKey(KeyCode.LeftAlt))
+            {
+                target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+            } else
+            {
+                target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+                player.rotation = Quaternion.Euler(0, mouseX, 0);
+            }
+		}
+        
+
 	}
 }

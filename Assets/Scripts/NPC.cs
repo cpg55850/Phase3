@@ -1,51 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
-[System.Serializable]
-public class NPC : MonoBehaviour {
+public class NPC : MonoBehaviour
+{
+    public float lookRadius = 5f;
+    
+    Transform player;
 
-    public Transform ChatBackGround;
-    public Transform NPCCharacter;
-
+    public Dialogue dialogue;
     private DialogueSystem dialogueSystem;
 
-    public string Name;
-
-    [TextArea(5, 10)]
-    public string[] sentences;
-
-    void Start () {
+    void Start() {
         dialogueSystem = FindObjectOfType<DialogueSystem>();
-    }
-	
-	void Update () {
-          Vector3 Pos = Camera.main.WorldToScreenPoint(NPCCharacter.position);
-          Pos.y += 175;
-          ChatBackGround.position = Pos;
-    }
+        player = PlayerManager.instance.player.transform;
+	}
 
-    public void OnTriggerStay(Collider other)
-    {
-        if ((other.gameObject.tag == "Player"))
-        {
-            this.gameObject.GetComponent<NPC>().enabled = true;
-            FindObjectOfType<DialogueSystem>().EnterRangeOfNPC();
-        }
-        if ((other.gameObject.tag == "Player") && Input.GetKeyDown(KeyCode.F))
-        {
-            this.gameObject.GetComponent<NPC>().enabled = true;
-            dialogueSystem.Names = Name;
-            dialogueSystem.dialogueLines = sentences;
-            FindObjectOfType<DialogueSystem>().NPCName();
-        }
-    }
+    void Update() {
+        if(player) {
+                float distance = Vector3.Distance(player.position, transform.position);
 
-    public void OnTriggerExit()
-    {
-        FindObjectOfType<DialogueSystem>().OutOfRange();
-        this.gameObject.GetComponent<NPC>().enabled = false;
-    }
+            if (distance <= lookRadius) {
+                dialogueSystem.EnterRangeOfNPC();
+
+                Vector3 targetToLookAt = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
+                transform.LookAt(targetToLookAt);
+                if(Input.GetKeyDown(KeyCode.F) && dialogueSystem.dialogueActive == false) {
+                    dialogueSystem.StartDialogue(dialogue);    
+			    }
+		    } else {
+                dialogueSystem.OutOfRangeOfNPC();  
+            }
+		}
+
+
+
+	}
+
 }
-

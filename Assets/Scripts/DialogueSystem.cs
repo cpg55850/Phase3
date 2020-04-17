@@ -5,166 +5,79 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-  public Text nameText;
+    private Queue<string> sentences;
+    private bool inRange;
+
+    public Text nameText;
     public Text dialogueText;
-
+    public GameObject promptGUI;
     public GameObject dialogueGUI;
-    public Transform dialogueBoxGUI;
-
-    public float letterDelay = 0.1f;
-    public float letterMultiplier = 0.5f;
-
-    public KeyCode DialogueInput = KeyCode.F;
-
-    public string Names;
-
-    public string[] dialogueLines;
-
-    public bool letterIsMultiplied = false;
     public bool dialogueActive = false;
-    public bool dialogueEnded = false;
-    public bool outOfRange = true;
+    public bool withinRange = false;
 
-    public AudioClip audioClip;
-    AudioSource audioSource;
-
+    // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        sentences = new Queue<string>();
         dialogueText.text = "";
     }
 
-    void Update()
-    {
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.F) && dialogueActive == true) {
+              DisplayNextSentence();
+		}
+	}
 
-    }
+    public void EnterRangeOfNPC() {
+        if(!withinRange) {
+            promptGUI.SetActive(true);
+            withinRange = true;
+		}
+	}
 
-    public void EnterRangeOfNPC()
-    {
-        outOfRange = false;
-        dialogueGUI.SetActive(true);
-        if (dialogueActive == true)
-        {
+    public void OutOfRangeOfNPC() {
+        if(withinRange) {
             dialogueGUI.SetActive(false);
-        }
-    }
-
-    public void NPCName()
-    {
-        outOfRange = false;
-        dialogueBoxGUI.gameObject.SetActive(true);
-        nameText.text = Names;
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (!dialogueActive)
-            {
-                dialogueActive = true;
-                StartCoroutine(StartDialogue());
-            }
-        }
-    }
-
-    private IEnumerator StartDialogue()
-    {
-        if (outOfRange == false)
-        {
-            int dialogueLength = dialogueLines.Length;
-            int currentDialogueIndex = 0;
-
-            while (currentDialogueIndex < dialogueLength || !letterIsMultiplied)
-            {
-                if (!letterIsMultiplied)
-                {
-                    letterIsMultiplied = true;
-                    StartCoroutine(DisplayString(dialogueLines[currentDialogueIndex++]));
-
-                    if (currentDialogueIndex >= dialogueLength)
-                    {
-                        dialogueEnded = true;
-                    }
-                }
-                yield return 0;
-            }
-
-            while (true)
-            {
-                if (Input.GetKeyDown(DialogueInput) && dialogueEnded == false)
-                {
-                    break;
-                }
-                yield return 0;
-            }
-            dialogueEnded = false;
+            promptGUI.SetActive(false);
             dialogueActive = false;
-            DropDialogue();
-        }
-    }
+            withinRange = false;
+		}
 
-    private IEnumerator DisplayString(string stringToDisplay)
-    {
-        if (outOfRange == false)
-        {
-            int stringLength = stringToDisplay.Length;
-            int currentCharacterIndex = 0;
+	}
 
-            dialogueText.text = "";
+    public void StartDialogue(Dialogue dialogue) {
+        if(dialogueActive == false) {
+            dialogueGUI.SetActive(true);
+            promptGUI.SetActive(false);
+            dialogueActive = true;
 
-            while (currentCharacterIndex < stringLength)
-            {
-                dialogueText.text += stringToDisplay[currentCharacterIndex];
-                currentCharacterIndex++;
+            nameText.text = dialogue.name;
 
-                if (currentCharacterIndex < stringLength)
-                {
-                    if (Input.GetKey(DialogueInput))
-                    {
-                        yield return new WaitForSeconds(letterDelay * letterMultiplier);
+            sentences.Clear();
 
-                        if (audioClip) audioSource.PlayOneShot(audioClip, 0.5F);
-                    }
-                    else
-                    {
-                        yield return new WaitForSeconds(letterDelay);
+            foreach(string sentence in dialogue.sentences){
+                sentences.Enqueue(sentence);  
+		    }
 
-                        if (audioClip) audioSource.PlayOneShot(audioClip, 0.5F);
-                    }
-                }
-                else
-                {
-                    dialogueEnded = false;
-                    break;
-                }
-            }
-            while (true)
-            {
-                if (Input.GetKeyDown(DialogueInput))
-                {
-                    break;
-                }
-                yield return 0;
-            }
-            dialogueEnded = false;
-            letterIsMultiplied = false;
-            dialogueText.text = "";
-        }
-    }
+		}
 
-    public void DropDialogue()
-    {       
+
+	}
+
+    public void DisplayNextSentence() {
+        if(sentences.Count == 0) {
+            EndDialogue();
+            return;
+		}
+
+        string sentence = sentences.Dequeue();
+        dialogueText.text = sentence;
+	}
+
+    public void EndDialogue() {
+        promptGUI.SetActive(true);
         dialogueGUI.SetActive(false);
-        dialogueBoxGUI.gameObject.SetActive(false);
-    }
+        dialogueActive = false;
+	}
 
-    public void OutOfRange()
-    {
-        outOfRange = true;
-        if (outOfRange == true)
-        {
-            letterIsMultiplied = false;
-            dialogueActive = false;
-            StopAllCoroutines();
-            dialogueGUI.SetActive(false);
-            dialogueBoxGUI.gameObject.SetActive(false);
-        }
-    }
 }

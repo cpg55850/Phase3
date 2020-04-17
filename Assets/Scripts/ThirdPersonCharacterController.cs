@@ -15,19 +15,13 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private Animator anim;
     public GameObject upCube;
 
-    public int health;
-    public int maxHealth;
-
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
-
     public float damage = 10f;
     public float range;
     private int layerMask;
 
+    CharacterStats myStats;
+
     public Camera cam;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +31,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
         anim = GetComponent<Animator>();
         range = 3f;
         layerMask = LayerMask.GetMask("Interactable");
+        myStats = GetComponent<CharacterStats>();
     }
 
     // Update is called once per frame
@@ -69,30 +64,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
         //Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), this.transform.forward * range, Color.red, 0f, false);
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 7f, Color.blue, 0f, false);
         
-        // Health
 
-        if(health > maxHealth) {
-            health = maxHealth;  
-		}
-
-        for(int i = 0; i < hearts.Length; i++) {
-            if(i < health) {
-                hearts[i].sprite = fullHeart;     
-			} else {
-                hearts[i].sprite = emptyHeart;     
-			}
-
-            if(i < maxHealth) {
-                hearts[i].enabled = true;
-		    } else {
-                hearts[i].enabled = false;
-		    }
-	    }
     }
-
-    private void LateUpdate() {
-
-	}
 
     void Punch() {
         anim.Play("Punch",-1,0f);
@@ -100,10 +73,14 @@ public class ThirdPersonCharacterController : MonoBehaviour
         bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, out hit, range, layerMask);
 
         if(didHit) {
-            
-              Debug.Log(hit.transform.name);
-              Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, Color.yellow, 200f, false);
-              hit.rigidbody.AddForce(cam.transform.forward * 1000f);
+            Debug.Log(hit.transform.name);
+            Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, Color.yellow, 200f, false);
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if(interactable) {
+                 interactable.Interact();
+			} else {
+                hit.rigidbody.AddForce(cam.transform.forward * 1000f);
+            }
 		}
 	}
 
