@@ -24,6 +24,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     public float damage = 10f;
     public float range;
+    private int layerMask;
+
+    public Camera cam;
     
 
     // Start is called before the first frame update
@@ -33,6 +36,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
         col = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
         range = 3f;
+        layerMask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -40,6 +44,12 @@ public class ThirdPersonCharacterController : MonoBehaviour
     {
         // Walking animation
         PlayerMovement();
+
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            speed = 20f;
+		} else {
+            speed = 10f;  
+		}
 
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
@@ -56,8 +66,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
         if(Input.GetMouseButtonDown(1)) {
             MakeCube();  
 		}
-        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), this.transform.forward * range, Color.red, 0f, false);
-
+        //Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), this.transform.forward * range, Color.red, 0f, false);
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * 7f, Color.blue, 0f, false);
+        
         // Health
 
         if(health > maxHealth) {
@@ -77,19 +88,22 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 hearts[i].enabled = false;
 		    }
 	    }
-
-
     }
+
+    private void LateUpdate() {
+
+	}
 
     void Punch() {
         anim.Play("Punch",-1,0f);
         RaycastHit hit;
-        bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), transform.forward, out hit, range);
+        bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, out hit, range, layerMask);
 
         if(didHit) {
             
               Debug.Log(hit.transform.name);
-              hit.rigidbody.AddForce(transform.forward * 400f);
+              Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, Color.yellow, 200f, false);
+              hit.rigidbody.AddForce(cam.transform.forward * 1000f);
 		}
 	}
 

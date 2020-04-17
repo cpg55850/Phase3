@@ -27,7 +27,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         mouseY = Mathf.Clamp(mouseY, -35, 60);
         transform.LookAt(target);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftAlt))
         {
             target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
         } else
