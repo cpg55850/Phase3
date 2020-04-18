@@ -13,7 +13,6 @@ public class DialogueSystem : MonoBehaviour
     public GameObject promptGUI;
     public GameObject dialogueGUI;
     public bool dialogueActive = false;
-    public bool withinRange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,20 +28,13 @@ public class DialogueSystem : MonoBehaviour
 	}
 
     public void EnterRangeOfNPC() {
-        if(!withinRange) {
-            promptGUI.SetActive(true);
-            withinRange = true;
-		}
+        promptGUI.SetActive(true);
 	}
 
     public void OutOfRangeOfNPC() {
-        if(withinRange) {
-            dialogueGUI.SetActive(false);
-            promptGUI.SetActive(false);
-            dialogueActive = false;
-            withinRange = false;
-		}
-
+        dialogueGUI.SetActive(false);
+        promptGUI.SetActive(false);
+        dialogueActive = false;
 	}
 
     public void StartDialogue(Dialogue dialogue) {
@@ -58,10 +50,7 @@ public class DialogueSystem : MonoBehaviour
             foreach(string sentence in dialogue.sentences){
                 sentences.Enqueue(sentence);  
 		    }
-
 		}
-
-
 	}
 
     public void DisplayNextSentence() {
