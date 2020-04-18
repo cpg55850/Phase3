@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class TriggerDialogue : MonoBehaviour
 {
     public float lookRadius = 5f;
     
@@ -12,7 +12,7 @@ public class NPC : MonoBehaviour
     private DialogueSystem dialogueSystem;
 
     void Start() {
-        dialogueSystem = FindObjectOfType<DialogueSystem>();
+        dialogueSystem = DialogueManager.instance.dialogueSystem.GetComponent<DialogueSystem>();
         player = PlayerManager.instance.player.transform;
 	}
 
@@ -29,8 +29,8 @@ public class NPC : MonoBehaviour
                     dialogueSystem.StartDialogue(dialogue);    
 			    }
 		    } else {
-                dialogueSystem.OutOfRangeOfNPC();  
-            }
+                dialogueSystem.OutOfRangeOfNPC();    
+			}
 		}
 
 

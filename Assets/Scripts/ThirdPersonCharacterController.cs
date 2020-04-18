@@ -85,8 +85,6 @@ public class ThirdPersonCharacterController : MonoBehaviour
 	}
 
     void MakeCube() {
-        
-
         GameObject player = this.gameObject;
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
@@ -94,7 +92,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
         float spawnDistance = 10f;
 
         Vector3 spawnPos = playerPos + playerDirection*spawnDistance;
-        Instantiate(upCube, spawnPos, playerRotation);
+        GameObject instantiatedObj = Instantiate(upCube, spawnPos, playerRotation);
+        Destroy(instantiatedObj, 5f);
 	}
 
     void PlayerMovement() {
