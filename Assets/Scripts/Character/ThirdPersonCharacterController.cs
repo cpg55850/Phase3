@@ -17,7 +17,6 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     public float damage = 10f;
     public float range;
-    private int layerMask;
 
     CharacterStats myStats;
 
@@ -30,7 +29,6 @@ public class ThirdPersonCharacterController : MonoBehaviour
         col = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
         range = 3f;
-        layerMask = LayerMask.GetMask("Interactable");
         myStats = GetComponent<CharacterStats>();
     }
 
@@ -70,7 +68,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     void Punch() {
         anim.Play("Punch",-1,0f);
         RaycastHit hit;
-        bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, out hit, range, layerMask);
+        bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, out hit, range);
 
         if(didHit) {
             Debug.Log(hit.transform.name);
@@ -79,7 +77,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
             if(interactable) {
                  interactable.Interact();
 			} else {
-                hit.rigidbody.AddForce(cam.transform.forward * 1000f);
+                if(hit.rigidbody){
+                    hit.rigidbody.AddForce(cam.transform.forward * 1000f);
+                }
             }
 		}
 	}
