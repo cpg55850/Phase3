@@ -14,6 +14,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private bool doubleJump = false;
     private Animator anim;
     public GameObject upCube;
+    private IEnumerator walkingCoroutine;
+    public AudioSource clip;
 
     public float damage = 10f;
     public float range;
@@ -30,6 +32,18 @@ public class ThirdPersonCharacterController : MonoBehaviour
         anim = GetComponent<Animator>();
         range = 3f;
         myStats = GetComponent<CharacterStats>();
+        walkingCoroutine = WaitForKeyDown();
+    }
+
+    public IEnumerator WaitForKeyDown()
+    {
+        while (true)
+        {
+            clip.pitch = Random.Range(0.5f, 1.5f);
+            clip.Play();
+            yield return new WaitForSeconds(.6f);
+        }
+
     }
 
     // Update is called once per frame
@@ -59,10 +73,19 @@ public class ThirdPersonCharacterController : MonoBehaviour
         if(Input.GetMouseButtonDown(1)) {
             MakeCube();  
 		}
-        //Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), this.transform.forward * range, Color.red, 0f, false);
+        Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.down * 2.2f, Color.red, 0f, false);
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 7f, Color.blue, 0f, false);
-        
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            StartCoroutine(walkingCoroutine);
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            StopCoroutine(walkingCoroutine);
+        }
+    
     }
 
     void Punch() {
@@ -103,7 +126,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
         Vector3 playerMovement = new Vector3(hor, 0f, ver) * speed * Time.deltaTime;
         transform.Translate(playerMovement, Space.Self);
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
             if(IsGround()) {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 doubleJump = false;

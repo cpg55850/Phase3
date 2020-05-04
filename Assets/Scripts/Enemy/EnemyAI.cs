@@ -9,6 +9,8 @@ public class EnemyAI : Interactable
 
     Transform player;
     NavMeshAgent agent;
+    public AudioClip owClip;
+    public AudioSource audioSource;
 
     CharacterStats myStats;
 
@@ -26,6 +28,13 @@ public class EnemyAI : Interactable
         if (playerCombat != null) {
             playerCombat.Attack(myStats);
 		}
+
+        if (audioSource.enabled)
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(owClip, 0.3f);
+        }
+
 	}
 
     // Update is called once per frame

@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
 
     public int space = 4;
-    private int itemSelected = 1;
 
     public List<Item> items = new List<Item>();  
 
@@ -46,44 +45,5 @@ public class Inventory : MonoBehaviour
         items.Remove(item);
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
-    }
-
-    void Update()
-    {
-        var d = Input.GetAxis("Mouse ScrollWheel");
-        if (d > 0f)
-        {
-            // scroll up
-            itemSelected++;
-            if(itemSelected == space + 1)
-            {
-                itemSelected = 1;
-            }
-            if (itemSelected <= items.Count)
-            {
-                Debug.Log("Item " + itemSelected + ": " + items[itemSelected-1]);
-            } else
-            {
-                Debug.Log("Item " + itemSelected);
-            }
-            
-        }
-        else if (d < 0f)
-        {
-            // scroll down
-            itemSelected--;
-            if (itemSelected == 0)
-            {
-                itemSelected = space;
-            }
-            if (itemSelected <= items.Count)
-            {
-                Debug.Log("Item " + itemSelected + ": " + items[itemSelected-1]);
-            }
-            else
-            {
-                Debug.Log("Item " + itemSelected);
-            }
-        }
     }
 }

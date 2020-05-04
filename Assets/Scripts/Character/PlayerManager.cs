@@ -16,4 +16,9 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     public GameObject player;
+    private bool isWalking;
+    private IEnumerator coroutine;
+    public AudioSource clip;
+
+
 }
