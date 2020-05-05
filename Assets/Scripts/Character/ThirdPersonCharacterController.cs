@@ -15,7 +15,10 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private Animator anim;
     public GameObject upCube;
     private IEnumerator walkingCoroutine;
-    public AudioSource clip;
+    public AudioClip walkClip;
+    public AudioClip punchClip;
+    public AudioSource audioSourceWalk;
+    public AudioSource audioSourcePunch;
 
     public float damage = 10f;
     public float range;
@@ -39,8 +42,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
     {
         while (true)
         {
-            clip.pitch = Random.Range(0.5f, 1.5f);
-            clip.Play();
+            audioSourceWalk.pitch = Random.Range(0.5f, 1.5f);
+            audioSourceWalk.PlayOneShot(walkClip, 1f);
             yield return new WaitForSeconds(.6f);
         }
 
@@ -90,6 +93,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     void Punch() {
         anim.Play("Punch",-1,0f);
+        audioSourcePunch.PlayOneShot(punchClip, .5f);
+
         RaycastHit hit;
         bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, out hit, range);
 
