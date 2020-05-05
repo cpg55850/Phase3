@@ -13,12 +13,16 @@ public class DialogueSystem : MonoBehaviour
     public GameObject promptGUI;
     public GameObject dialogueGUI;
     public bool dialogueActive = false;
+    private AudioSource audioSource;
+    public AudioClip textClip;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
         dialogueText.text = "";
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -32,13 +36,14 @@ public class DialogueSystem : MonoBehaviour
 	}
 
     public void OutOfRangeOfNPC() {
-        dialogueGUI.SetActive(false);
+        animator.SetBool("IsOpen", false);
         promptGUI.SetActive(false);
         dialogueActive = false;
 	}
 
     public void StartDialogue(Dialogue dialogue) {
-        if(dialogueActive == false) {
+        animator.SetBool("IsOpen", true);
+        if (dialogueActive == false) {            
             dialogueGUI.SetActive(true);
             promptGUI.SetActive(false);
             dialogueActive = true;
@@ -60,12 +65,27 @@ public class DialogueSystem : MonoBehaviour
 		}
 
         string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
 	}
 
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        foreach(char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(.02f); // wait for one frame
+            if(letter != " ".ToCharArray()[0] && dialogueActive)
+            {
+                audioSource.PlayOneShot(textClip, .8f);
+            }
+        }
+    }
+
     public void EndDialogue() {
+        animator.SetBool("IsOpen", false);
         promptGUI.SetActive(true);
-        dialogueGUI.SetActive(false);
         dialogueActive = false;
 	}
 
