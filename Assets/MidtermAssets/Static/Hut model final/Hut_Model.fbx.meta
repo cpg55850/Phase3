@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 1e0336661aa9f1448b234be120b52f12
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bed
+    100002: bucket
+    100004: Bucket_01
+    100006: Bucket_02
+    100008: Bucket_03
+    100010: Bucket_04
+    100012: chair
+    100014: chair_02
+    100016: Cube
+    100018: Cube_001
+    100020: Cube_004
+    100022: DOOR
+    100024: Fish_01
+    100026: Fruit_01
+    100028: Fruit_02
+    100030: Fruit_03
+    100032: Fruit_04
+    100034: Fruit_05
+    100036: Hut_
+    100038: Hut__001
+    100040: Hut__002
+    100042: //RootNode
+    100044: Roof
+    400000: Bed
+    400002: bucket
+    400004: Bucket_01
+    400006: Bucket_02
+    400008: Bucket_03
+    400010: Bucket_04
+    400012: chair
+    400014: chair_02
+    400016: Cube
+    400018: Cube_001
+    400020: Cube_004
+    400022: DOOR
+    400024: Fish_01
+    400026: Fruit_01
+    400028: Fruit_02
+    400030: Fruit_03
+    400032: Fruit_04
+    400034: Fruit_05
+    400036: Hut_
+    400038: Hut__001
+    400040: Hut__002
+    400042: //RootNode
+    400044: Roof
+    2300000: Bed
+    2300002: bucket
+    2300004: Bucket_01
+    2300006: Bucket_02
+    2300008: Bucket_03
+    2300010: Bucket_04
+    2300012: chair
+    2300014: chair_02
+    2300016: Cube
+    2300018: Cube_001
+    2300020: Cube_004
+    2300022: DOOR
+    2300024: Fish_01
+    2300026: Fruit_01
+    2300028: Fruit_02
+    2300030: Fruit_03
+    2300032: Fruit_04
+    2300034: Fruit_05
+    2300036: Hut_
+    2300038: Hut__001
+    2300040: Hut__002
+    2300042: Roof
+    3300000: Bed
+    3300002: bucket
+    3300004: Bucket_01
+    3300006: Bucket_02
+    3300008: Bucket_03
+    3300010: Bucket_04
+    3300012: chair
+    3300014: chair_02
+    3300016: Cube
+    3300018: Cube_001
+    3300020: Cube_004
+    3300022: DOOR
+    3300024: Fish_01
+    3300026: Fruit_01
+    3300028: Fruit_02
+    3300030: Fruit_03
+    3300032: Fruit_04
+    3300034: Fruit_05
+    3300036: Hut_
+    3300038: Hut__001
+    3300040: Hut__002
+    3300042: Roof
+    4300000: Hut__002
+    4300002: Hut__001
+    4300004: DOOR
+    4300006: Fish_01
+    4300008: Fruit_01
+    4300010: Bucket_01
+    4300012: Fruit_04
+    4300014: Bucket_03
+    4300016: Cube_001
+    4300018: Fruit_02
+    4300020: Bed
+    4300022: Cube_004
+    4300024: Cube
+    4300026: Roof
+    4300028: bucket
+    4300030: chair_02
+    4300032: Bucket_02
+    4300034: Bucket_04
+    4300036: chair
+    4300038: Hut_
+    4300040: Fruit_03
+    4300042: Fruit_05
+    6400000: Bed
+    6400002: bucket
+    6400004: Bucket_01
+    6400006: Bucket_02
+    6400008: Bucket_03
+    6400010: Bucket_04
+    6400012: chair
+    6400014: chair_02
+    6400016: Cube
+    6400018: Cube_001
+    6400020: Cube_004
+    6400022: DOOR
+    6400024: Fish_01
+    6400026: Fruit_01
+    6400028: Fruit_02
+    6400030: Fruit_03
+    6400032: Fruit_04
+    6400034: Fruit_05
+    6400036: Hut_
+    6400038: Hut__001
+    6400040: Hut__002
+    6400042: Roof
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_000__Chair_texture_jpg
+    second: {fileID: 2100000, guid: 5771824bf9431e64aa5f4c43054d9d01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001__Bucket_texture_jpg
+    second: {fileID: 2100000, guid: 3683e45af65c69c4dbe7009c02b81b1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002__Roof_texture_jpg
+    second: {fileID: 2100000, guid: 705bdcd145ddb3e4db85ad50636c9504, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_003__Bucket_texture_jpg
+    second: {fileID: 2100000, guid: 3683e45af65c69c4dbe7009c02b81b1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_004__Hut_texture_jpg
+    second: {fileID: 2100000, guid: 7a1a88a4ad10d46468ce6e1750857a45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__0_001__026av1_jpg_011
+    second: {fileID: 2100000, guid: 76c31594dde349d4eb37137175d65a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__0_002__029man1_jpg_003
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__0__025sp1_jpg_005
+    second: {fileID: 2100000, guid: a770b78fb1766d748bf34a95fa404cf3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__1_002__029man1_jpg_007
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__1__025sp1_jpg_001
+    second: {fileID: 2100000, guid: a770b78fb1766d748bf34a95fa404cf3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__25_001__Fruits_texture_jpg
+    second: {fileID: 2100000, guid: 290b4335710b7f94197b503792d65e22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__26_001__Fruits_texture_jpg
+    second: {fileID: 2100000, guid: 290b4335710b7f94197b503792d65e22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__2_002__029man1_jpg_009
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__2__025sp1_jpg_007
+    second: {fileID: 2100000, guid: a770b78fb1766d748bf34a95fa404cf3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__3_001__026av1_jpg_001
+    second: {fileID: 2100000, guid: 76c31594dde349d4eb37137175d65a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__3_002__029man1_jpg_011
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__3__025sp1_jpg_003
+    second: {fileID: 2100000, guid: a770b78fb1766d748bf34a95fa404cf3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__4_001__029man1_jpg_013
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__4__026av1_jpg_009
+    second: {fileID: 2100000, guid: 76c31594dde349d4eb37137175d65a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__5_001__029man1_jpg_005
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__5__026av1_jpg_007
+    second: {fileID: 2100000, guid: 76c31594dde349d4eb37137175d65a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__6_001__029man1_jpg_001
+    second: {fileID: 2100000, guid: d933ee8c23cb0fe41b1b24873b7228ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__6__026av1_jpg_005
+    second: {fileID: 2100000, guid: 76c31594dde349d4eb37137175d65a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__7__026av1_jpg_003
+    second: {fileID: 2100000, guid: 76c31594dde349d4eb37137175d65a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__Bed_texture_jpg
+    second: {fileID: 2100000, guid: fd14aea508d0c824f80c74d8e22be6b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__Box_Texture_jpg
+    second: {fileID: 2100000, guid: 0f4d8a9c461aa884690b7dfc9d8f9b85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__Table_texture_jpg
+    second: {fileID: 2100000, guid: babd06b42c64ae14fabf865171f87001, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__ddd_jpg
+    second: {fileID: 2100000, guid: 0946fe5a92b96ab448ac5484351e77d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tomat01_SSS__Tamato_textu_jpg
+    second: {fileID: 2100000, guid: 93508d4795e88804c87aa5059c200652, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tomat02__Tamato_textu_jpg
+    second: {fileID: 2100000, guid: 93508d4795e88804c87aa5059c200652, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 30
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

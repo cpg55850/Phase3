@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Animator startButton;
     public Animator settingsButton;
+    public Animator settingsDialog;
 
     // Start is called before the first frame update
     void Start()
@@ -28,5 +29,13 @@ public class UIManager : MonoBehaviour
     {
         startButton.SetBool("isHidden", true);
         settingsButton.SetBool("isHidden", true);
+        settingsDialog.SetBool("isHidden", false);
+    }
+
+    public void CloseSetting()
+    {
+        startButton.SetBool("isHidden", false);
+        settingsButton.SetBool("isHidden", false);
+        settingsDialog.SetBool("isHidden", true);
     }
 }

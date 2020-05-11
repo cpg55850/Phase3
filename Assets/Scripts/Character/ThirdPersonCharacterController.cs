@@ -13,12 +13,14 @@ public class ThirdPersonCharacterController : MonoBehaviour
     public LayerMask ground;
     private bool doubleJump = false;
     private Animator anim;
-    public GameObject upCube;
     private IEnumerator walkingCoroutine;
     public AudioClip walkClip;
     public AudioClip punchClip;
     public AudioSource audioSourceWalk;
     public AudioSource audioSourcePunch;
+    private Inventory inventory;
+    public InventoryUI inventoryUI;
+    public GameObject upCube;
 
     public float damage = 10f;
     public float range;
@@ -36,6 +38,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
         range = 3f;
         myStats = GetComponent<CharacterStats>();
         walkingCoroutine = WaitForKeyDown();
+        inventory = Inventory.instance;
     }
 
     public IEnumerator WaitForKeyDown()
@@ -74,7 +77,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
         // MakeCube
         if(Input.GetMouseButtonDown(1)) {
-            MakeCube();  
+            UseItem();  
 		}
         Debug.DrawRay(this.transform.position + new Vector3(0, 2, 0), Vector3.down * 2.2f, Color.red, 0f, false);
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 7f, Color.blue, 0f, false);
@@ -93,7 +96,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     void Punch() {
         anim.Play("Punch",-1,0f);
-        audioSourcePunch.PlayOneShot(punchClip, .5f);
+        audioSourcePunch.PlayOneShot(punchClip, .2f);
 
         RaycastHit hit;
         bool didHit = Physics.Raycast(this.transform.position + new Vector3(0, 2, 0), cam.transform.forward * 7f, out hit, range);
@@ -112,17 +115,33 @@ public class ThirdPersonCharacterController : MonoBehaviour
 		}
 	}
 
-    void MakeCube() {
+    public void MakeCube()
+    {
         GameObject player = this.gameObject;
         Vector3 playerPos = player.transform.position;
         Vector3 playerDirection = player.transform.forward;
         Quaternion playerRotation = player.transform.rotation;
         float spawnDistance = 10f;
 
-        Vector3 spawnPos = playerPos + playerDirection*spawnDistance;
+        Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
         GameObject instantiatedObj = Instantiate(upCube, spawnPos, playerRotation);
         Destroy(instantiatedObj, 5f);
-	}
+    }
+
+    void UseItem()
+    {
+        int itemSelected = inventoryUI.getItemSelected() - 1;
+
+        if(itemSelected >= inventory.items.Count) {
+            Debug.Log("Out of range");
+        } else
+        {
+            inventory.Use(inventory.items[inventoryUI.getItemSelected() - 1]);
+        }
+        
+    }
+
+
 
     void PlayerMovement() {
         float hor = Input.GetAxis("Horizontal");

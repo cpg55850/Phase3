@@ -16,6 +16,6 @@ public class CubeBehavior : MonoBehaviour
     void OnCollisionEnter()
     {
         audioSource.pitch = Random.Range(0.8f, 1.2f);
-        audioSource.PlayOneShot(thudSound, .5f);
+        audioSource.PlayOneShot(thudSound, 1f);
     }
 }

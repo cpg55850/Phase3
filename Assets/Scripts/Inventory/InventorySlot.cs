@@ -24,4 +24,14 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = null;
         icon.enabled = false;
     }
+
+    public void SelectItem()
+    {
+        selector.enabled = true;
+    }
+
+    public void DeselectItem()
+    {
+        selector.enabled = false;
+    }
 }

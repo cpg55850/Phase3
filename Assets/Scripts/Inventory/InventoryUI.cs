@@ -18,6 +18,11 @@ public class InventoryUI : MonoBehaviour
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
 
+    public int getItemSelected()
+    {
+        return itemSelected;
+    }
+
     void UpdateUI()
     {
         Debug.Log("UPDATING UI");
@@ -49,7 +54,7 @@ public class InventoryUI : MonoBehaviour
             // clear item selected
             for (int i = 0; i < inventory.space; i++)
             {
-                slots[i].selector.enabled = false;
+                slots[i].DeselectItem();
             }
         }
         if (d > 0f && inventory.items.Count > 0)
@@ -69,7 +74,7 @@ public class InventoryUI : MonoBehaviour
                 Debug.Log("Item " + itemSelected);
             }
             // show selected item
-            slots[itemSelected-1].selector.enabled = true;
+            slots[itemSelected - 1].SelectItem();
         }
         else if (d < 0f && inventory.items.Count > 0)
         {
@@ -88,7 +93,7 @@ public class InventoryUI : MonoBehaviour
                 Debug.Log("Item " + itemSelected);
             }
             // show selected item
-            slots[itemSelected - 1].selector.enabled = true;
+            slots[itemSelected - 1].SelectItem();
         }
     }
 }

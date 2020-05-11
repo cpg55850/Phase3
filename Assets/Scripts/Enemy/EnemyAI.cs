@@ -14,6 +14,9 @@ public class EnemyAI : Interactable
 
     CharacterStats myStats;
 
+    bool knockBack = false;
+    Vector3 knockBackDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +25,29 @@ public class EnemyAI : Interactable
         myStats = GetComponent<CharacterStats>();
     }
 
+    void FixedUpdate()
+    {
+        if (player)
+        {
+            float distance = Vector3.Distance(player.position, transform.position);
+            if (distance <= lookRadius)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+    }
+
     // Function that runs when the player interacts with the enemy
     public override void Interact() {
         CharacterCombat playerCombat = player.gameObject.GetComponent<CharacterCombat>();
         if (playerCombat != null) {
             playerCombat.Attack(myStats);
-		}
+            transform.Translate(-(Vector3.forward * Time.deltaTime) * 350);
+        }
 
         if (audioSource.enabled)
         {
@@ -41,14 +61,14 @@ public class EnemyAI : Interactable
     void Update()
     {
         if(player) {
-                      float distance = Vector3.Distance(player.position, transform.position);
-        if (distance <= lookRadius) {
-            agent.SetDestination(player.position);
-            Vector3 targetToLookAt = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
-            transform.LookAt(targetToLookAt);  
-		} else {
-            agent.SetDestination(transform.position);  
-		}
+            float distance = Vector3.Distance(player.position, transform.position);
+            if (distance <= lookRadius) {
+                agent.SetDestination(player.position);
+                Vector3 targetToLookAt = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
+                transform.LookAt(targetToLookAt);  
+		    } else {
+                agent.SetDestination(transform.position);  
+		    }
 		}
 
     }
