@@ -21,6 +21,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private Inventory inventory;
     public InventoryUI inventoryUI;
     public GameObject upCube;
+    public GameObject book;
 
     public float damage = 10f;
     public float range;
@@ -141,7 +142,20 @@ public class ThirdPersonCharacterController : MonoBehaviour
         
     }
 
+    public void GetBook()
+    {
+        Debug.Log("Book Retrieved!");
 
+        GameObject player = this.gameObject;
+        Vector3 playerPos = player.transform.position;
+        Vector3 playerDirection = player.transform.forward;
+        Quaternion playerRotation = player.transform.rotation;
+        float spawnDistance = 10f;
+
+        Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
+        GameObject instantiatedObj = Instantiate(book, spawnPos, playerRotation);
+        Destroy(instantiatedObj, 5f);
+    }
 
     void PlayerMovement() {
         float hor = Input.GetAxis("Horizontal");
